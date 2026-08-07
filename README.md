@@ -243,3 +243,27 @@ The complete n8n workflow is included in this repository and can be imported dir
 Location:
 
 [workflow-file](workflow-file/workflow.json)
+
+## 📁 Folder Structure
+
+```text
+Smart-Inbox-Assistant/
+│
+├── README.md
+├── LICENSE
+├── .gitignore
+│
+├── workflow-file/
+│   └── workflow.json
+│
+├── screenshots/
+│   ├── workflow.png
+│   ├── ai-agent.png
+│   ├── gmail-trigger.png
+│   └── google-sheet.png
+│
+├── assets/
+│   └──workflowdemo.gif
+│
+└── docs/
+```

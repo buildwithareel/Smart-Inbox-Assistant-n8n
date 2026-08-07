@@ -336,3 +336,23 @@ The workflow logs processed emails using the following columns:
 | Summary | Short email summary |
 | Action | Sent or Draft |
 
+## 🔮 Future Improvements
+
+Multi-language email support
+Outlook integration
+Slack notifications
+CRM integration
+AI sentiment analysis
+Automatic follow-up reminders
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 👨‍💻 Author
+
+Areel Arshad
+
+AI Automation Developer
+
+GitHub: @buildwithareel

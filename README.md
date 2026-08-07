@@ -58,3 +58,79 @@ The **Smart Inbox Assistant** is an AI-powered automation workflow built with **
 
 This workflow demonstrates how AI and workflow automation can work together to reduce repetitive tasks, improve response times, and streamline email management.
 
+## ❗ Problem Statement
+
+Managing emails manually can quickly become overwhelming, especially when inboxes receive a high volume of messages every day. Users must spend time opening each email, understanding its purpose, determining its urgency, drafting replies, and organizing important conversations.
+
+This repetitive process increases response time, reduces productivity, and increases the risk of overlooking high-priority emails. Businesses and professionals need an efficient solution that can intelligently process emails while reducing manual effort.
+
+## 💡 Solution
+
+The Smart Inbox Assistant automates the complete email processing workflow using AI and n8n.
+Whenever a new email arrives in Gmail, the workflow automatically:
+
+- Detects the incoming email.
+- Extracts the required email information.
+- Uses an AI Agent to analyze the email content.
+- Classifies the email into an appropriate category.
+- Assigns a priority level (High, Medium, or Low).
+- Generates a professional draft reply.
+- Sends urgent emails for immediate attention or saves non-urgent replies as drafts.
+- Logs every processed email into Google Sheets for tracking and record keeping.
+
+This automation reduces manual effort, improves response consistency, and ensures that important emails receive immediate attention.
+
+## 🏗️ Workflow Architecture
+
+The Smart Inbox Assistant follows a structured automation pipeline that combines Gmail, AI, conditional logic, and Google Sheets to process incoming emails efficiently.
+
+The workflow receives every new Gmail message, extracts the required information, uses an AI Agent to analyze the content, determines the email category and priority, generates a professional draft reply, routes the email based on its priority, and finally records the processed email information in Google Sheets.
+
+## 📊 Workflow Flow
+
+```text
+New Email (Gmail)
+        │
+        ▼
+ Gmail Trigger
+        │
+        ▼
+  Edit Fields
+        │
+        ▼
+    AI Agent
+(Classify & Prioritize)
+        │
+        ▼
+   Code Node
+(Parse AI JSON)
+        │
+        ▼
+     IF Node
+     │      │
+     │      │
+ High   Medium / Low
+     │          │
+     ▼          ▼
+Send Email   Create Draft
+     │          │
+     └────┬─────┘
+          ▼
+ Google Sheets
+```
+
+## ⚙️ Workflow Explanation
+
+| Step | Node | Purpose |
+|------|------|---------|
+| 1 | Gmail Trigger | Detects every new incoming Gmail message. |
+| 2 | Edit Fields | Extracts and formats the required email information. |
+| 3 | AI Agent | Analyzes the email, assigns a category and priority, generates a summary, and creates a professional draft reply. |
+| 4 | Code | Parses and validates the AI-generated JSON output. |
+| 5 | IF | Routes emails according to their priority level. |
+| 6 | Gmail | Sends urgent emails immediately or creates draft replies for medium and low priority emails. |
+| 7 | Google Sheets | Stores processed email details for tracking and reporting. |
+
+## 📸 Workflow Architecture
+
+![Workflow](screenshots/workflow.png)

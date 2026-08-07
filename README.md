@@ -86,6 +86,8 @@ The Smart Inbox Assistant follows a structured automation pipeline that combines
 
 The workflow receives every new Gmail message, extracts the required information, uses an AI Agent to analyze the content, determines the email category and priority, generates a professional draft reply, routes the email based on its priority, and finally records the processed email information in Google Sheets.
 
+Both routing paths (Send Email and Create Draft) include a Google Sheets logging step, ensuring that every processed email is recorded regardless of the action taken.
+
 ## 📊 Workflow Flow
 
 ```text
@@ -309,5 +311,28 @@ cp .env.example .env
 ```
 Never commit real API keys or personal credentials to the repository.
 
+## ▶️ Usage
 
+1. Send an email to the connected Gmail account.
+2. The Gmail Trigger starts the workflow.
+3. The AI Agent analyzes the email.
+4. The email is categorized and prioritized.
+5. A professional draft reply is generated.
+6. High-priority emails are sent immediately.
+7. Medium- and Low-priority emails are saved as drafts.
+8. The email details are logged into Google Sheets.
+
+## 📊 Google Sheet Structure
+
+The workflow logs processed emails using the following columns:
+
+| Column | Description |
+|--------|-------------|
+| Date | Processing date and time |
+| Sender | Email sender |
+| Subject | Email subject |
+| Category | AI-detected category |
+| Priority | AI-detected priority |
+| Summary | Short email summary |
+| Action | Sent or Draft |
 

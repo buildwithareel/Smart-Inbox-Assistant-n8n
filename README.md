@@ -267,3 +267,35 @@ Smart-Inbox-Assistant/
 │
 └── docs/
 ```
+
+## 🚀 Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/buildwithareel/smart-inbox-assistant-n8n.git
+```
+
+### 2. Open n8n
+
+Start your local or cloud n8n instance.
+
+### 3. Import the workflow
+
+Import:
+
+```text
+workflow/smart-inbox-assistant.json
+```
+
+### 4. Configure credentials
+
+Add your:
+
+- Gmail account
+- Google Sheets account
+- Google Gemini API / AI credential
+
+### 5. Activate the workflow
+
+Enable the workflow to start processing incoming emails.

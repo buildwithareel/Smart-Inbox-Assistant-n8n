@@ -235,3 +235,11 @@ The Code node parses and validates the AI-generated JSON output, ensuring that c
 The GIF below demonstrates the Smart Inbox Assistant processing an incoming email from start to finish.
 
 ![demo](assets/workflowdemo.gif)
+
+## Workfloe json
+
+The complete n8n workflow is included in this repository and can be imported directly into n8n.
+
+Location:
+
+[workflow-file](workflow-file/workflow.json)

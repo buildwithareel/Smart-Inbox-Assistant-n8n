@@ -1,0 +1,539 @@
+{
+  "name": "Smart inbox Assistant",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -320,
+        -112
+      ],
+      "id": "884be219-232e-4e43-b2e5-6ca2f12db4f8",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "D8VHTcULdqhgvbPn",
+          "name": "123 acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "06cc22d1-5c1c-44b4-a9aa-f8ce1b78372e",
+              "name": "subject",
+              "value": "={{ $json.headers.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "613733c2-6ff4-43eb-b6fa-7b99769a2172",
+              "name": "from",
+              "value": "={{ $json.headers.from }}",
+              "type": "string"
+            },
+            {
+              "id": "56aa7b12-a7d0-49a6-811c-f95f068fafea",
+              "name": "text",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -96,
+        -112
+      ],
+      "id": "73a4bd7d-ad29-45d8-8d14-9b9cf93be03b",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "432aa521-2587-42d7-9c11-441ede1997de",
+              "leftValue": "={{ $json.priority }}",
+              "rightValue": "High",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        704,
+        -112
+      ],
+      "id": "941d250e-6078-4fcc-91e3-cfb777bcc60d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "= {{$('Gmail Trigger').item.json.subject}}",
+        "message": "={{ $('Arange data').item.json.draftReply }}",
+        "options": {
+          "sendTo": "={{ $('Edit Fields').item.json.from }}"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        928,
+        -16
+      ],
+      "id": "9dd0f2fb-d242-4195-91ab-1a6724043b8c",
+      "name": "Create a draft",
+      "webhookId": "a9735518-1669-4c80-98ef-22814f3c16a3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "D8VHTcULdqhgvbPn",
+          "name": "123 acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1AYxYQAzK-h7tgOeqenvvMI7IxC-7YcpZTDRUhyj0uA4",
+          "mode": "list",
+          "cachedResultName": "gmail inbox sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AYxYQAzK-h7tgOeqenvvMI7IxC-7YcpZTDRUhyj0uA4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AYxYQAzK-h7tgOeqenvvMI7IxC-7YcpZTDRUhyj0uA4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $now.format('yyyy-MM-dd') }}",
+            "Sender": "={{ $('Edit Fields').item.json.from }}",
+            "Subject": "={{ $('Edit Fields').item.json.subject }}",
+            "Category": "={{ $('Arange data').item.json.category }}",
+            "Priority": "={{ $('Arange data').item.json.priority }}",
+            "Summary": "={{ $('Arange data').item.json.summary }}",
+            "Draft Created": "={{ $('Arange data').item.json.draftReply }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sender",
+              "displayName": "Sender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Draft Created",
+              "displayName": "Draft Created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        -16
+      ],
+      "id": "f69aa51f-387d-47b7-b74f-bcf4e77ae8cd",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "pxBB5nb1ojIk7npD",
+          "name": "123 sheet"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "areelarshad8080@gmail.com",
+        "subject": "={{ $('Edit Fields').item.json.subject }}",
+        "message": "={{ $json.draftReply }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        928,
+        -208
+      ],
+      "id": "0411d1f3-8c3b-4996-8b74-5cd94ac8345d",
+      "name": "Send urgent mesg",
+      "webhookId": "f8af4e30-c617-477f-a5ad-680d9bb5809a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "D8VHTcULdqhgvbPn",
+          "name": "123 acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get AI output\nlet output = $json.output;\n\n// Remove markdown code fences\noutput = output.replace(/```json\\s*/i, \"\");\noutput = output.replace(/```\\s*$/i, \"\");\noutput = output.trim();\n\ntry {\n  // Convert string to JSON\n  const parsed = JSON.parse(output);\n\n  return [\n    {\n      json: parsed\n    }\n  ];\n} catch (error) {\n  throw new Error(\"Invalid JSON received from AI:\\n\\n\" + output);\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        -112
+      ],
+      "id": "2dfb9ac0-8018-43d3-801b-fcb9a8d040c8",
+      "name": "Arange data"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        112
+      ],
+      "id": "92d1d370-a0a5-4800-87ff-e3957de80c84",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "BJQ2ltXnq7TD0gYg",
+          "name": "1 gemini api key 123"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Subject:\n{{ $json.subject }}\n\nFrom:\n{{ $json.from }}\n\nBody:\n{{ $json.text }}",
+        "options": {
+          "systemMessage": "You are an AI Email Assistant.\n\nAnalyze the email.\n\nReturn ONLY valid JSON.\n\n{\n  \"category\":\"\",\n  \"priority\":\"\",\n  \"summary\":\"\",\n  \"draftReply\":\"\"\n}\n\nCategories:\n- Sales\n- Support\n- Meeting\n- Billing\n- Personal\n- Spam\n- Other\n\nPriority:\nHigh\nMedium\nLow\n \nPriority Rules:\n- High = Urgent, deadlines today, payment overdue, customer complaint, legal issue, production outage.\n- Medium = Meeting requests, project discussions, quotations, business inquiries.\n- Low = Newsletters, promotional emails, general information, greetings.\n\n\nSummary:\nMaximum 2 sentences.\n\nDraft Reply:\nProfessional, polite, ready to send.\nDo not include subject."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        128,
+        -112
+      ],
+      "id": "1cdbecab-41da-4589-8ec8-0ddd994d9913",
+      "name": "smart email response generator",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1AYxYQAzK-h7tgOeqenvvMI7IxC-7YcpZTDRUhyj0uA4",
+          "mode": "list",
+          "cachedResultName": "gmail inbox sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AYxYQAzK-h7tgOeqenvvMI7IxC-7YcpZTDRUhyj0uA4/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AYxYQAzK-h7tgOeqenvvMI7IxC-7YcpZTDRUhyj0uA4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date": "={{ $now.format('yyyy-MM-dd') }}",
+            "Sender": "={{ $('Edit Fields').item.json.from }}",
+            "Subject": "={{ $('Edit Fields').item.json.subject }}",
+            "Category": "={{ $('Arange data').item.json.category }}",
+            "Priority": "={{ $('Arange data').item.json.priority }}",
+            "Summary": "={{ $('Arange data').item.json.summary }}",
+            "Draft Created": "={{ $('Arange data').item.json.draftReply }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sender",
+              "displayName": "Sender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Draft Created",
+              "displayName": "Draft Created",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1152,
+        -208
+      ],
+      "id": "3a7f1322-4c11-4687-a5f1-927242c891c2",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "pxBB5nb1ojIk7npD",
+          "name": "123 sheet"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "smart email response generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send urgent mesg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a draft": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Arange data": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "smart email response generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "smart email response generator": {
+      "main": [
+        [
+          {
+            "node": "Arange data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send urgent mesg": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "cc67f178-43c7-434e-8213-62c33b7dae45",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0efff5282c664f1fee9a39cab43347b2df8546c625f736d9125c61c3652689be"
+  },
+  "nodeGroups": [],
+  "id": "QLLXHKUwpZvVhbfT",
+  "tags": []
+}

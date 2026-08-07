@@ -169,3 +169,63 @@ The prompt instructs the AI to:
 
 This structured approach ensures reliable integration with subsequent workflow nodes.
 
+## 📦 JSON Response Format
+
+The AI Agent returns the following JSON structure:
+
+```json
+{
+  "category": "",
+  "priority": "",
+  "summary": "",
+  "draftReply": ""
+}
+```
+## 📸 Screenshots
+
+### 🔹 Complete Workflow
+
+The complete n8n workflow showing the end-to-end email automation process.
+
+![workflow](screenshorts/workflow.png)
+
+---
+
+### 🔹 AI Agent Configuration
+
+The AI Agent analyzes every incoming email, classifies its category and priority, and generates a professional draft reply.
+
+![Ai agent node](screenshorts/ai-agent.png)
+
+
+---
+
+### 🔹 Priority Decision (IF Node)
+
+The IF node checks the AI-generated priority level and routes the email accordingly.
+
+![if node](screenshorts/if-node.png)
+
+---
+
+### 🔹 Gmail Action
+
+High-priority emails are sent immediately, while Medium- and Low-priority emails are saved as drafts.
+
+![gmail](screenshorts/gmail-action.png)
+
+
+---
+
+### 🔹 Google Sheets Log
+
+Every processed email is automatically logged into Google Sheets for tracking and reporting.
+![googlesheet](screenshorts/googlesheet.png)
+
+---
+
+### 🔹 Code Node
+
+The Code node parses and validates the AI-generated JSON output, ensuring that category, priority, summary, and draft reply are correctly structured before the workflow continues.
+
+![codenode](screenshorts/code-node.png)

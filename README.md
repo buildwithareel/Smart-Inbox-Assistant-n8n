@@ -134,3 +134,17 @@ Send Email   Create Draft
 ## 📸 Workflow Architecture
 
 ![Workflow](screenshorts/workflow.png)
+
+## ✨ Features
+
+- 📧 Automatically detects new incoming Gmail messages.
+- 🤖 Uses an AI Agent to analyze email content.
+- 🏷️ Classifies emails into categories (Sales, Support, Meeting, Billing, Personal, Spam, or Other).
+- 🚦 Assigns priority levels (High, Medium, or Low) based on predefined rules.
+- 📝 Generates professional, AI-powered draft replies.
+- 🚀 Sends high-priority emails for immediate attention.
+- 📄 Creates draft replies for medium- and low-priority emails.
+- 📊 Logs processed email details into Google Sheets.
+- ⚡ Reduces manual email management and improves response efficiency.
+- 🔄 Built with a modular workflow that is easy to extend and customize.
+

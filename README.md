@@ -133,4 +133,4 @@ Send Email   Create Draft
 
 ## 📸 Workflow Architecture
 
-![Workflow](screenshots/workflow.png)
+![Workflow](screenshorts/workflow.png)

@@ -73,7 +73,7 @@ Whenever a new email arrives in Gmail, the workflow automatically:
 - Extracts the required email information.
 - Uses an AI Agent to analyze the email content.
 - Classifies the email into an appropriate category.
-- Assigns a priority level (High, Medium, or Low).
+- Assigns a priority level (High,Medium, or Low).
 - Generates a professional draft reply.
 - Sends urgent emails for immediate attention or saves non-urgent replies as drafts.
 - Logs every processed email into Google Sheets for tracking and record keeping.

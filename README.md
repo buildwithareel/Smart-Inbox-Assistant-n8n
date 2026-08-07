@@ -299,3 +299,15 @@ Add your:
 ### 5. Activate the workflow
 
 Enable the workflow to start processing incoming emails.
+
+## ⚙️ Configuration
+
+Create a `.env` file based on `.env.example` and provide your own credentials.
+
+```bash
+cp .env.example .env
+```
+Never commit real API keys or personal credentials to the repository.
+
+
+

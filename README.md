@@ -148,3 +148,24 @@ Send Email   Create Draft
 - ⚡ Reduces manual email management and improves response efficiency.
 - 🔄 Built with a modular workflow that is easy to extend and customize.
 
+## 🤖 AI Agent
+
+At the core of this workflow is an AI Agent responsible for intelligently processing incoming emails. The AI analyzes each email's content, determines its category and priority, generates a concise summary, and prepares a professional draft reply.
+
+By combining natural language understanding with workflow automation, the Smart Inbox Assistant reduces manual effort while ensuring consistent and accurate email handling.
+
+## 🧠 AI Prompt Design
+
+The AI Agent is guided by a structured system prompt that ensures every email is processed consistently.
+
+The prompt instructs the AI to:
+
+- Analyze the email content.
+- Categorize the email.
+- Assign a priority level.
+- Generate a concise summary.
+- Create a professional draft reply.
+- Return the output as valid JSON for downstream automation.
+
+This structured approach ensures reliable integration with subsequent workflow nodes.
+

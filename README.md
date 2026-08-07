@@ -229,3 +229,9 @@ Every processed email is automatically logged into Google Sheets for tracking an
 The Code node parses and validates the AI-generated JSON output, ensuring that category, priority, summary, and draft reply are correctly structured before the workflow continues.
 
 ![codenode](screenshorts/code-node.png)
+
+## 🎥 Demo
+
+The GIF below demonstrates the Smart Inbox Assistant processing an incoming email from start to finish.
+
+![demo](assets/workflowdemo.gif)

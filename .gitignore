@@ -1,0 +1,40 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# n8n local data
+.n8n/
+.n8n/*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Screen recording / temporary media
+*.part
+*.bak
+
+# Python cache (if used later)
+__pycache__/
+*.py[cod]
+
+# Local credentials / private files
+credentials.json
+secrets.json

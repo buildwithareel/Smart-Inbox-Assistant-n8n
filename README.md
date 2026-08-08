@@ -36,6 +36,9 @@ An AI-powered email automation workflow built with **n8n** that automatically an
 - [🔮 Future Improvements](#-future-improvements)
 - [👨‍💻 Author](#-author)
 - [📄 License](#-license)
+- [🤝 Contributing](#-contributing)
+- [🔐 Credentials](#-security--credentials)
+
 
 ## 📌 Project Information
 
@@ -183,6 +186,18 @@ The AI Agent returns the following JSON structure:
   "draftReply": ""
 }
 ```
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| **n8n** | Workflow automation and orchestration |
+| **Google Gemini** | AI-powered email analysis and reply generation |
+| **Gmail** | Receives, sends, and drafts emails |
+| **Google Sheets** | Stores and tracks processed email data |
+| **JavaScript** | Processes and validates AI-generated JSON |
+| **Git & GitHub** | Version control and project hosting |
+
 ## 📸 Screenshots
 
 ### 🔹 Complete Workflow
@@ -353,7 +368,11 @@ No API keys, passwords, OAuth tokens, or private credentials are included in thi
 
 Before importing the workflow, configure your own credentials in n8n.
 
+## 🤝 Contributing
 
+Contributions, suggestions, and improvements are welcome.
+
+If you find an issue or have an idea for improving the workflow, feel free to open an issue or submit a pull request.
 
 ## 📄 License
 

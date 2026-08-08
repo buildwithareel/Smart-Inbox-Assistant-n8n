@@ -345,6 +345,16 @@ CRM integration
 AI sentiment analysis
 Automatic follow-up reminders
 
+## 🔐 Security & Credentials
+
+This workflow requires authenticated access to Gmail and Google Sheets.
+
+No API keys, passwords, OAuth tokens, or private credentials are included in this repository.
+
+Before importing the workflow, configure your own credentials in n8n.
+
+
+
 ## 📄 License
 
 This project is licensed under the MIT License.

@@ -253,7 +253,7 @@ The GIF below demonstrates the Smart Inbox Assistant processing an incoming emai
 
 ![demo](assets/workflowdemo.gif)
 
-## Workfloe json
+## Workflow json
 
 The complete n8n workflow is included in this repository and can be imported directly into n8n.
 
